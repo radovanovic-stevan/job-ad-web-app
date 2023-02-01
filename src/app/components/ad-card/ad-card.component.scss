@@ -1,0 +1,37 @@
+mat-card {
+    position: relative;
+
+    mat-card-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ad-description {
+        padding-top: 1rem;
+        width: 80%;
+        text-align: justify;
+        height: 150px;
+        overflow-y: auto;
+    }
+
+    .actions-spacer {
+        flex: 1;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .ad-description {
+        width: 100% !important;
+    }
+        
+    app-ad-card {
+        flex: 100% !important;
+    }
+
+}
