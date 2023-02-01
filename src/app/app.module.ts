@@ -14,6 +14,8 @@ import { HeaderComponent } from './components/ui/header/header.component';
 import { adsReducer } from './state/ads.reducer';
 import { AdCardComponent } from './components/ad-card/ad-card.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { JobFormComponent } from './components/job-form/job-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     HeaderComponent,
     AdCardComponent,
     SearchFormComponent,
+    JobFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ ads: adsReducer })
   ],

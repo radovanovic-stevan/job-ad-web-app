@@ -1,4 +1,5 @@
-Create Job Ad Card
-Job List Desktop
-Job List Mobile
-Create Job Form
+Job Form (Reusable for Edit and New)
+Link the form to Edit and New page
+Make Fake DataSource (for now)
+Integrate Actions for fetching jobs
+Generate Ad Cards based on DataSource

@@ -1,0 +1,34 @@
+<form [formGroup]="profileForm">
+
+    <mat-form-field>
+        <mat-label>Title </mat-label>
+        <input matInput type="text" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Description: </mat-label>
+        <textarea matInput type="text" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Skills: </mat-label>
+        <input placeholder="Enter skills divided by a | symbol (e.g. Angular|React|TS) " 
+        matInput type="text" formControlName="skills"/>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status:</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="draft">Draft</mat-option>
+          <mat-option value="published">Published</mat-option>
+          <mat-option value="archived">Archived</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button type="button" mat-raised-button color="primary">Submit</button>
+        <button type="button" mat-raised-button color="warn">Cancel</button>
+    </div>
+  
+</form>

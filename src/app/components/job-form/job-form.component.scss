@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    width: 70%;
+    margin: auto;
+
+    form {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        row-gap: 10px;
+
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+
+}
