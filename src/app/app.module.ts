@@ -13,6 +13,7 @@ import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './components/ui/header/header.component';
 import { adsReducer } from './state/ads.reducer';
 import { AdCardComponent } from './components/ad-card/ad-card.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdCardComponent } from './components/ad-card/ad-card.component';
     AdEditComponent,
     HeaderComponent,
     AdCardComponent,
+    SearchFormComponent,
   ],
   imports: [
     BrowserModule,
