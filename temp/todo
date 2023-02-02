@@ -1,4 +1,5 @@
 Job Form (Reusable for Edit and New)
+Bug: Scrolling not available on mobile
 Link the form to Edit and New page
 Make Fake DataSource (for now)
 Integrate Actions for fetching jobs

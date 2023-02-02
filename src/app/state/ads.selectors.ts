@@ -4,10 +4,11 @@ import { JobAd } from "../interfaces/job-ad.interface";
 export interface AdsState {
     ads: JobAd[],
     loading: boolean;
+    errorMessage: string;
 }
    
 export interface AppState {
-    feature: AdsState;
+    adsSlice: AdsState;
 }
 
 export const selectAdsFeature = createFeatureSelector<AdsState>('ads');
@@ -20,4 +21,9 @@ export const selectAds = createSelector(
 export const selectLoading = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.loading
+);
+
+export const selectErrorMessage = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.errorMessage
 );

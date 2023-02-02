@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { JobAd } from 'src/app/interfaces/job-ad.interface';
 
 @Component({
   selector: 'app-ad-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./ad-card.component.scss']
 })
 export class AdCardComponent {
+
+  @Input() jobAd!: JobAd;
 
 }

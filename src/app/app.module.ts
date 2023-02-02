@@ -16,6 +16,8 @@ import { AdCardComponent } from './components/ad-card/ad-card.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { JobFormComponent } from './components/job-form/job-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { AdsEffects } from './state/ads.effects';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forRoot({ ads: adsReducer })
+    StoreModule.forRoot({ ads: adsReducer }),
+    EffectsModule.forRoot([AdsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

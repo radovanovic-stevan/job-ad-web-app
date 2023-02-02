@@ -1,9 +1,6 @@
 <app-search-form></app-search-form>
 <div class="ads-wrapper">
-    <app-ad-card></app-ad-card>
-    <app-ad-card></app-ad-card>
-    <app-ad-card></app-ad-card>
-    <app-ad-card></app-ad-card>
+    <app-ad-card *ngFor="let ad of (ads$ | async)" [jobAd]="ad"></app-ad-card>
 </div>
 <button 
     class="add-new-button" 
