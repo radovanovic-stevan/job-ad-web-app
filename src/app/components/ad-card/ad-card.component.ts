@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { JobAd } from 'src/app/interfaces/job-ad.interface';
 import { updateAd } from 'src/app/state/ads.actions';
@@ -7,7 +7,8 @@ import { AdsState } from 'src/app/state/ads.selectors';
 @Component({
   selector: 'app-ad-card',
   templateUrl: './ad-card.component.html',
-  styleUrls: ['./ad-card.component.scss']
+  styleUrls: ['./ad-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdCardComponent {
 

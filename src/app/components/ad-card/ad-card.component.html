@@ -19,7 +19,7 @@
         <mat-chip disableRipple>{{jobAd.status | titlecase}}</mat-chip>
         <div class="actions-spacer"></div>
         <div class="buttons">
-            <button mat-mini-fab matTooltip="Edit" [routerLink]="['../edit',0]">
+            <button mat-mini-fab matTooltip="Edit" [routerLink]="['../edit',jobAd.id]">
                 <mat-icon>edit</mat-icon>
             </button>
             <button *ngIf="jobAd.status === 'draft'" mat-mini-fab matTooltip="Publish" (click)="publishAd(jobAd.id)">

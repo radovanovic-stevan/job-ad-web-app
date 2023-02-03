@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AdListComponent } from './components/ad-list/ad-list.component';
-import { AdNewComponent } from './components/ad-new/ad-new.component';
-import { AdEditComponent } from './components/ad-edit/ad-edit.component';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './components/ui/header/header.component';
 import { adsReducer } from './state/ads.reducer';
@@ -19,14 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { AdsEffects } from './state/ads.effects';
 import { SpinnerComponent } from './components/ui/spinner/spinner.component';
-
+// TODO: Add Can Deactivate for Form
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     AdListComponent,
-    AdNewComponent,
-    AdEditComponent,
     HeaderComponent,
     AdCardComponent,
     SearchFormComponent,

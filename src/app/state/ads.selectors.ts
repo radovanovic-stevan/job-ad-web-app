@@ -33,3 +33,8 @@ export const selectSuccessMessage = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.successMessage
 );
+export const selectAdById = (id: number | null) =>
+createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.ads.find(elem => elem.id === id)
+  );

@@ -15,12 +15,12 @@
 
     <mat-form-field>
         <mat-label>Skills: </mat-label>
-        <input placeholder=" " 
-        matInput type="text" formControlName="skills"/>
+        <input matInput type="text" formControlName="skills"/>
         <mat-hint>Enter skills divided by a | symbol (e.g. Angular|React|TS)</mat-hint>
         <mat-error>This field is required</mat-error>
     </mat-form-field>
 
+    <!-- TODO Editing Archived has a bug -->
     <mat-form-field>
         <mat-label>Status:</mat-label>
         <mat-select formControlName="status">
@@ -31,7 +31,7 @@
     </mat-form-field>
 
     <div class="buttons">
-        <button [disabled]="isFormDisabled()" type="button" mat-raised-button color="primary">Submit</button>
+        <button [disabled]="isFormDisabled()" (click)="submitForm()" type="button" mat-raised-button color="primary">Submit</button>
         <button type="button" mat-raised-button color="warn" (click)="navigateBack()">Cancel</button>
     </div>
   
