@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
-import { AppState, selectAds } from 'src/app/state/ads.selectors';
-import { jobAds } from 'temp/datasource';
+import { AppState, selectAds, selectLoading } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-ad-list',

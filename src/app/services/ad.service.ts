@@ -14,11 +14,13 @@ export class AdService {
     return of(JSON.parse(JSON.stringify(jobAds))).pipe(delay(2000));
   }
 
-  updateAd(id: number, changed: Partial<JobAd>): Observable<void> {
+  //TODO: Any
+  updateAd(id: number, changed: Partial<JobAd>): Observable<any> {
+    console.log(id,changed);
     const adIndex = jobAds.findIndex(elem => elem.id === id);
     if(adIndex === -1) return throwError(() => new Error('Ad does not exist')).pipe(delay(2000));
     jobAds[adIndex] = {...jobAds[adIndex], ...changed};
-    return of().pipe(delay(2000));
+    return of({id,changed}).pipe(delay(2000));
   }
 
   addNewAd(ad: Omit<JobAd,"id">): Observable<number> {

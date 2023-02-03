@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { JobAd } from 'src/app/interfaces/job-ad.interface';
+import { updateAd } from 'src/app/state/ads.actions';
+import { AdsState } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-ad-card',
@@ -9,5 +12,15 @@ import { JobAd } from 'src/app/interfaces/job-ad.interface';
 export class AdCardComponent {
 
   @Input() jobAd!: JobAd;
+
+  constructor(private store: Store<AdsState>) {}
+
+  publishAd(id: number) {
+    this.store.dispatch(updateAd({id,changed: {status: 'published'}}))
+  }
+
+  archiveAd(id: number) {
+    this.store.dispatch(updateAd({id,changed: {status: 'archived'}}))
+  }
 
 }

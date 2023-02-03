@@ -18,6 +18,7 @@ import { JobFormComponent } from './components/job-form/job-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { AdsEffects } from './state/ads.effects';
+import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AdsEffects } from './state/ads.effects';
     AdCardComponent,
     SearchFormComponent,
     JobFormComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

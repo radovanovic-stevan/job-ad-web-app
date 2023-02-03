@@ -22,10 +22,10 @@
             <button mat-mini-fab matTooltip="Edit" [routerLink]="['../edit',0]">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button *ngIf="jobAd.status === 'draft'" mat-mini-fab matTooltip="Publish">
+            <button *ngIf="jobAd.status === 'draft'" mat-mini-fab matTooltip="Publish" (click)="publishAd(jobAd.id)">
                 <mat-icon>publish</mat-icon>
             </button>
-            <button *ngIf="jobAd.status === 'published'" mat-mini-fab matTooltip="Archive">
+            <button *ngIf="jobAd.status === 'published'" mat-mini-fab matTooltip="Archive" (click)="archiveAd(jobAd.id)">
                 <mat-icon>archive</mat-icon>
             </button>
         </div>

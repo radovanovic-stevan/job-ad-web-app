@@ -2,3 +2,6 @@
 <div class="router-wrap">
   <router-outlet></router-outlet>
 </div>
+<div class="spinner-wrap" *ngIf="(loading$ | async)">
+  <mat-spinner></mat-spinner>
+</div>

@@ -3,11 +3,13 @@
     <app-ad-card *ngFor="let ad of (ads$ | async)" [jobAd]="ad"></app-ad-card>
 </div>
 <button 
-    class="add-new-button" 
-    mat-fab color="primary" 
-    matTooltip="Create a new ad"
-    matTooltipPosition="left"
-    [routerLink]="['/new-ad']"
+        class="add-new-button" 
+        mat-fab color="primary" 
+        matTooltip="Create a new ad"
+        matTooltipPosition="left"
+        [routerLink]="['/new-ad']"
 >
     <mat-icon>add</mat-icon>
 </button>
+
+

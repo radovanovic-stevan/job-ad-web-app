@@ -1,4 +1,10 @@
-.logo {
-    padding-bottom: 0.2rem;
-    padding-right: 0.5rem;
+:host {
+    z-index: 11;
+    position: sticky;
+    top: 0;
+
+    .logo {
+        padding-bottom: 0.2rem;
+        padding-right: 0.5rem;
+    }
 }
