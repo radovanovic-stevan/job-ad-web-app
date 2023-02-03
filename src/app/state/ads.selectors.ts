@@ -5,6 +5,7 @@ export interface AdsState {
     ads: JobAd[],
     loading: boolean;
     errorMessage: string;
+    successMessage: string;
 }
    
 export interface AppState {
@@ -26,4 +27,9 @@ export const selectLoading = createSelector(
 export const selectErrorMessage = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.errorMessage
+);
+
+export const selectSuccessMessage = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.successMessage
 );

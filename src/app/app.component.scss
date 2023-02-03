@@ -17,6 +17,17 @@
     z-index: 10;
 }
 
+.error-snackbar {
+    background-color: white;
+    text-align: center;
+}
+
+.success-snackbar {
+    background-color: white;
+    text-align: center;
+
+}
+
 @media (max-width: 768px) {
 
     .router-wrap {
