@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { switchMap, tap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { JobAd, JobAdStatus } from 'src/app/interfaces/job-ad.interface';
 import { createAd, updateAd } from 'src/app/state/ads.actions';
-import { AdsState, selectAdById, selectAds } from 'src/app/state/ads.selectors';
+import { AdsState, selectAdById } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-job-form',
@@ -26,12 +26,12 @@ export class JobFormComponent {
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<AdsState>) {
     this.route.paramMap
     .pipe(
-      tap(map => console.log(map)),
       switchMap((paramMap: ParamMap) => this.store.select(selectAdById(+(paramMap.get("id") ?? -1)))),
     )
     .subscribe((ad: JobAd | undefined) => {
       if(!ad) return;
       this.id = ad.id;
+      if(ad.status === 'archived') this.profileForm.controls.status.disable();
       this.profileForm.controls.title.setValue(ad.title);
       this.profileForm.controls.description.setValue(ad.description);
       this.profileForm.controls.status.setValue(ad.status);

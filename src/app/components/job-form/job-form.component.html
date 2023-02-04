@@ -23,7 +23,8 @@
     <!-- TODO Editing Archived has a bug -->
     <mat-form-field>
         <mat-label>Status:</mat-label>
-        <mat-select formControlName="status">
+        <mat-select #select formControlName="status">
+          <mat-option *ngIf="select.value === 'archived'" value="archived">Archived</mat-option>
           <mat-option value="draft">Draft</mat-option>
           <mat-option value="published">Published</mat-option>
         </mat-select>

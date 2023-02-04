@@ -6,6 +6,7 @@ export interface AdsState {
     loading: boolean;
     errorMessage: string;
     successMessage: string;
+    filters: string[];
 }
    
 export interface AppState {
@@ -33,6 +34,12 @@ export const selectSuccessMessage = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.successMessage
 );
+
+export const selectFilters = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.filters
+);
+
 export const selectAdById = (id: number | null) =>
 createSelector(
     selectAdsFeature,

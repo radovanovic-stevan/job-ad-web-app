@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { delay, EMPTY, Observable, of, throwError } from 'rxjs';
+import { delay, EMPTY, filter, Observable, of, throwError } from 'rxjs';
 import { JobAd } from '../interfaces/job-ad.interface';
+import { FetchAdsProps } from '../state/ads.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,12 @@ export class AdService {
 
   constructor() {}
 
-  getAllAds(): Observable<JobAd[]> {
-    return of(JSON.parse(JSON.stringify(jobAds))).pipe(delay(2000));
+  getAllAds({pageNumber, pageSize, searchTerm, filters}: FetchAdsProps): Observable<JobAd[]> {
+    let jobsToSend: JobAd[] = JSON.parse(JSON.stringify(jobAds));
+    jobsToSend = jobsToSend.slice((pageNumber-1)*pageSize,pageSize);
+    if(searchTerm) jobsToSend = jobsToSend.filter(elem => elem.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
+    if(filters && filters.length !== 0) jobsToSend = jobsToSend.filter(elem => filters.includes(elem.status));
+    return of(jobsToSend).pipe(delay(1200));
   }
 
   updateAd(id: number, changed: Partial<JobAd>): Observable<string> {

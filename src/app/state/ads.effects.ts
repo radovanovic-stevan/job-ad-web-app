@@ -5,14 +5,14 @@ import { of } from 'rxjs';
 import { map, tap, mergeMap, catchError } from 'rxjs/operators';
 import { JobAd } from '../interfaces/job-ad.interface';
 import { AdService } from '../services/ad.service';
-import { createAd, createAdFail, createAdSuccess, fetchAds, fetchAdsFail, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
+import { createAd, createAdFail, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
  
 @Injectable()
 export class AdsEffects {
  
   fetchAds$ = createEffect(() => this.actions$.pipe(
     ofType(fetchAds.type),
-    mergeMap(() => this.adService.getAllAds()
+    mergeMap((props: FetchAdsProps) => this.adService.getAllAds(props)
       .pipe(
         map(ads => ({ type: fetchAdsSuccess.type, ads })),
         catchError(() => of({ type: fetchAdsFail.type}))
