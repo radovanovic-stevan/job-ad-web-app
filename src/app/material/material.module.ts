@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import { MyCustomPaginatorIntl } from './custom-paginator';
 
 @NgModule({
   declarations: [],
@@ -25,7 +27,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+  ],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl}
   ]
 })
 export class MaterialModule { }

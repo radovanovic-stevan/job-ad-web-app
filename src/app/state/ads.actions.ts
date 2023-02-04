@@ -12,6 +12,9 @@ export const createAdSuccess = createAction('[Ads] Create Ad Success',props<Crea
 export const createAdFail = createAction('[Ads] Create Ad Fail');
 export const clearMessages = createAction('[Ads] Clear Messages');
 export const changeFilters = createAction('[Ads] Change Filters',props<ChangeFilterActionProps>());
+export const changePageNumber = createAction('[Ads] Change Page Number',props<ChangePageNumberProps>());
+export const changePageSize = createAction('[Ads] Change Page Size',props<ChangePageSizeProps>());
+
 
 export type FetchAdsProps = {
     searchTerm?: string;
@@ -44,4 +47,12 @@ export type CreateAdSuccessProps = {
 
 export type ChangeFilterActionProps = {
     filters: string[];
+}
+
+export type ChangePageNumberProps = {
+    pageNumber: number;
+}
+
+export type ChangePageSizeProps = {
+    pageSize: number;
 }

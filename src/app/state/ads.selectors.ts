@@ -7,6 +7,8 @@ export interface AdsState {
     errorMessage: string;
     successMessage: string;
     filters: string[];
+    pageNumber: number;
+    pageSize: number;
 }
    
 export interface AppState {
@@ -38,6 +40,16 @@ export const selectSuccessMessage = createSelector(
 export const selectFilters = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.filters
+);
+
+export const selectPageNumber = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.pageNumber
+);
+
+export const selectPageSize = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.pageSize
 );
 
 export const selectAdById = (id: number | null) =>

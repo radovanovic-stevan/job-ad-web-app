@@ -1,6 +1,7 @@
 :host {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 
     mat-form-field {
@@ -20,6 +21,11 @@
         }
 
     }
+
+    mat-paginator {
+        margin: auto;
+        margin-bottom: 1.2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -35,6 +41,8 @@
             padding-left: 0rem;
             width: 95%;
             margin: auto;
+            display: flex;
+            justify-content: space-evenly;
         }
    }
 

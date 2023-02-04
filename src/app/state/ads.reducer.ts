@@ -12,6 +12,8 @@ import {
   createAdSuccess,
   clearMessages,
   changeFilters,
+  changePageSize,
+  changePageNumber,
 } from './ads.actions';
 import { AdsState } from './ads.selectors';
 
@@ -20,7 +22,9 @@ export const initialState: AdsState = {
     loading: false,
     errorMessage: "",
     successMessage: "",
-    filters: []
+    filters: [],
+    pageNumber: 0,
+    pageSize: 0
 };
 
 export const adsReducer = createReducer(
@@ -62,14 +66,14 @@ export const adsReducer = createReducer(
   on(createAdFail, (state) => ({...state, errorMessage: "An ad with that title already exists", loading: false})),
   on(clearMessages, (state) => ({...state, errorMessage: "", successMessage: ""})),
   on(changeFilters, (state,{filters}) => {
-    console.log(filters);
     let newFilters = [...state.filters];
       if(newFilters.includes(filters[0])) {
         newFilters = newFilters.filter(elem => !filters.includes(elem))
       } else {
         newFilters.push(...filters);
       }
-      console.log(newFilters)
       return {...state, filters: newFilters}
-    })
+  }),
+  on(changePageSize, (state,{pageSize}) => ({...state, pageSize})),
+  on(changePageNumber, (state,{pageNumber}) => ({...state, pageNumber}))
 );
