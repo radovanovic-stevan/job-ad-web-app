@@ -9,6 +9,7 @@ export interface AdsState {
     filters: string[];
     pageNumber: number;
     pageSize: number;
+    adsSize: number;
 }
    
 export interface AppState {
@@ -50,6 +51,11 @@ export const selectPageNumber = createSelector(
 export const selectPageSize = createSelector(
     selectAdsFeature,
     (state: AdsState) => state.pageSize
+);
+
+export const selectAdsSize = createSelector(
+    selectAdsFeature,
+    (state: AdsState) => state.adsSize
 );
 
 export const selectAdById = (id: number | null) =>

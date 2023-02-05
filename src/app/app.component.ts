@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    // TODO Fix redirection for this and noFetching=true to avoid double fetching
+    // TODO noFetching=true to avoid double fetching
     // this.store.dispatch(fetchAds({pageNumber: 1, pageSize: 4}));
   }
 

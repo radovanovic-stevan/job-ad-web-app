@@ -14,7 +14,7 @@
     <button mat-stroked-button color="primary" [ngClass]="{'active-filter': (archivedFilter$ | async)}"
       (click)="changeFilters(['archived'])">Archived</button>
 </div>
-<mat-paginator [length]="20"
+<mat-paginator [length]="(adsSize$ | async)"
               (page)="changePage($event)"
               [pageSize]="(pageSize$ | async)"
               [pageIndex]="((pageNumber$ | async) ?? 1) - 1"

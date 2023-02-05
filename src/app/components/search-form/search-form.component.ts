@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { combineLatest, debounceTime, distinctUntilChanged, filter, map, skip, startWith, Subscription, tap } from 'rxjs';
 import { changeFilters, changePageNumber, changePageSize, fetchAds } from 'src/app/state/ads.actions';
-import { AdsState, selectFilters, selectPageNumber, selectPageSize } from 'src/app/state/ads.selectors';
+import { AdsState, selectAdsSize, selectFilters, selectPageNumber, selectPageSize } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-search-form',
@@ -54,6 +54,11 @@ export class SearchFormComponent implements OnInit,OnDestroy {
   );
 
   pageSize$ = this.store.select(selectPageSize)
+  .pipe(
+    filter(elem => !!elem)
+  );
+
+  adsSize$ = this.store.select(selectAdsSize)
   .pipe(
     filter(elem => !!elem)
   );

@@ -24,7 +24,8 @@ export type FetchAdsProps = {
 }
 
 export type FetchAdsSuccessProps = {
-    ads: JobAd[]
+    jobs: JobAd[];
+    length: number;
 }
 
 export type UpdateAdProps = {

@@ -24,15 +24,17 @@ export const initialState: AdsState = {
     successMessage: "",
     filters: [],
     pageNumber: 0,
-    pageSize: 0
+    pageSize: 0,
+    adsSize: 0
 };
 
 export const adsReducer = createReducer(
   initialState,
   on(fetchAds, (state) => ({...state, loading: true})),
-  on(fetchAdsSuccess, (state,{ads}) => {
+  on(fetchAdsSuccess, (state,{jobs,length}) => {
     const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
-    deepCopyState.ads = ads;
+    deepCopyState.ads = jobs;
+    deepCopyState.adsSize = length;
     deepCopyState.loading = false;
     deepCopyState.successMessage = "Successfully fetched ads 🎉";
     return deepCopyState;
@@ -41,6 +43,7 @@ export const adsReducer = createReducer(
     const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
     deepCopyState.ads = [];
     deepCopyState.loading = false;
+    deepCopyState.adsSize = 0;
     deepCopyState.successMessage = "Something went wrong while fetching ads 😭";
     return deepCopyState;
   }),

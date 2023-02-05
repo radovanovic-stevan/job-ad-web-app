@@ -29,7 +29,10 @@ export class JobFormComponent {
       switchMap((paramMap: ParamMap) => this.store.select(selectAdById(+(paramMap.get("id") ?? -1)))),
     )
     .subscribe((ad: JobAd | undefined) => {
-      if(!ad) return;
+      if(!ad) {
+        if (this.route.snapshot.paramMap.get("id")) this.router.navigateByUrl("ads");
+        return;
+      }
       this.id = ad.id;
       if(ad.status === 'archived') this.profileForm.controls.status.disable();
       this.profileForm.controls.title.setValue(ad.title);
@@ -40,15 +43,19 @@ export class JobFormComponent {
   }
 
   submitForm() {
-    // TODO: ANY
-    const formPayload = this.profileForm.getRawValue() as any;
-    formPayload.skills = formPayload.skills!.split("|");
-    
+    const formPayload = this.profileForm.getRawValue();
+    const changed: Omit<JobAd,'id'> = {
+      skills: formPayload.skills!.trim().split("|"),
+      status: formPayload.status!,
+      title: formPayload.title!.trim(),
+      description: formPayload.description!.trim()
+    }
+    console.log(changed);
     if(this.id) {
-      this.store.dispatch(updateAd({id: this.id, changed: formPayload}))
+      this.store.dispatch(updateAd({id: this.id, changed}))
     } else {
       console.log(formPayload)
-      this.store.dispatch(createAd(formPayload))
+      this.store.dispatch(createAd({ad: changed}))
     }
 
   }

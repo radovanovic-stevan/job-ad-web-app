@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { map, tap, mergeMap, catchError } from 'rxjs/operators';
 import { JobAd } from '../interfaces/job-ad.interface';
 import { AdService } from '../services/ad.service';
-import { createAd, createAdFail, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
+import { createAd, createAdFail, CreateAdProps, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
  
 @Injectable()
 export class AdsEffects {
@@ -14,7 +14,7 @@ export class AdsEffects {
     ofType(fetchAds.type),
     mergeMap((props: FetchAdsProps) => this.adService.getAllAds(props)
       .pipe(
-        map(ads => ({ type: fetchAdsSuccess.type, ads })),
+        map(({jobs, length}) => ({ type: fetchAdsSuccess.type, jobs,length })),
         catchError(() => of({ type: fetchAdsFail.type}))
       ))
     )
@@ -33,7 +33,7 @@ export class AdsEffects {
 
   createAd$ = createEffect(() => this.actions$.pipe(
     ofType(createAd.type),
-    mergeMap((ad: JobAd) => this.adService.addNewAd(ad)
+    mergeMap(({ad}: CreateAdProps) => this.adService.addNewAd(ad)
       .pipe(
         map((id) => ({ type: createAdSuccess.type, ad: {...ad, id}})),
         tap(() => this.router.navigateByUrl('/ads')),
