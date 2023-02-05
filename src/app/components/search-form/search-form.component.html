@@ -15,7 +15,9 @@
       (click)="changeFilters(['archived'])">Archived</button>
 </div>
 <mat-paginator [length]="20"
-              [pageSize]="10"
+              (page)="changePage($event)"
+              [pageSize]="(pageSize$ | async)"
+              [pageIndex]="((pageNumber$ | async) ?? 1) - 1"
               [pageSizeOptions]="[5, 10, 15, 20]"
 >
 </mat-paginator>

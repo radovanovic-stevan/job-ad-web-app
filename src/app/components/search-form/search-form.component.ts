@@ -1,5 +1,5 @@
 import { query } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -10,7 +10,8 @@ import { AdsState, selectFilters, selectPageNumber, selectPageSize } from 'src/a
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss']
+  styleUrls: ['./search-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchFormComponent implements OnInit,OnDestroy {
 
@@ -109,6 +110,12 @@ export class SearchFormComponent implements OnInit,OnDestroy {
 
   changeFilters(filters: string[]) {
     this.store.dispatch(changeFilters({filters}))
+  }
+
+  changePage(event: any) {
+    console.log(event,(event.pageIndex)+1,event.pageSize);
+    this.store.dispatch(changePageNumber({pageNumber: (event.pageIndex)+1}));
+    this.store.dispatch(changePageSize({pageSize: event.pageSize}));
   }
 
   ngOnDestroy(): void {
