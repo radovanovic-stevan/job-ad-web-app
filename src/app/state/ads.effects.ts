@@ -24,7 +24,7 @@ export class AdsEffects {
     ofType(updateAd.type),
     mergeMap(({id,changed}) => this.adService.updateAd(id,changed)
       .pipe(
-        map(() => ({ type: updateAdSuccess.type, id,changed })),
+        map(() => ({ type: updateAdSuccess.type, id,changed, loading: !this.router.url.includes('/ads') })),
         tap(() => this.router.navigateByUrl('/ads')),
         catchError(() => of({ type: updateAdFail.type}))
       ))

@@ -36,6 +36,7 @@ export type UpdateAdProps = {
 export type UpdateAdSuccessProps = {
     id: number;
     changed: Partial<JobAd>;
+    loading: boolean;
 }
 
 export type CreateAdProps = {

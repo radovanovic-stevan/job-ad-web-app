@@ -48,11 +48,11 @@ export const adsReducer = createReducer(
     return deepCopyState;
   }),
   on(updateAd,(state) => ({...state, loading: true})),
-  on(updateAdSuccess, (state,{id,changed}) => {
+  on(updateAdSuccess, (state,{id,changed, loading}) => {
       const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
       const index = deepCopyState.ads.findIndex(elem => elem.id === id);
       deepCopyState.ads[index] = {...deepCopyState.ads[index], ...changed};
-      deepCopyState.loading = false;
+      deepCopyState.loading = loading;
       deepCopyState.successMessage = "Successfully updated ad 🎉"
       return deepCopyState;
     }
@@ -62,7 +62,6 @@ export const adsReducer = createReducer(
   on(createAdSuccess, (state,{ad}) => {
     const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
     deepCopyState.ads.unshift(ad);
-    deepCopyState.loading = false;
     deepCopyState.successMessage = "Successfully created an ad 🎉"
     return deepCopyState;
   }),

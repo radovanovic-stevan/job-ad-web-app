@@ -50,11 +50,10 @@ export class JobFormComponent {
       title: formPayload.title!.trim(),
       description: formPayload.description!.trim()
     }
-    console.log(changed);
+
     if(this.id) {
       this.store.dispatch(updateAd({id: this.id, changed}))
     } else {
-      console.log(formPayload)
       this.store.dispatch(createAd({ad: changed}))
     }
 
@@ -65,7 +64,7 @@ export class JobFormComponent {
   }
 
   navigateBack() {
-    this.router.navigateByUrl('ads');
+    this.router.navigate(['ads'], {replaceUrl: true});
   }
 
 }
