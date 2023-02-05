@@ -25,21 +25,6 @@ export class SearchFormComponent implements OnInit,OnDestroy {
     distinctUntilChanged((prev,curr) => prev.length === curr.length),
   )
 
-  draftFilter$ = this.filters$
-  .pipe(
-    map(filters => filters.includes('draft'))
-  );
-
-  publishedFilter$ = this.filters$
-  .pipe(
-    map(filters => filters.includes('published'))
-  );
-
-  archivedFilter$ = this.filters$
-  .pipe(
-    map(filters => filters.includes('archived'))
-  );
-
   // TODO: SWITCH MAP maybe
   searchInput$ = this.searchInput.valueChanges
   .pipe(
@@ -54,11 +39,6 @@ export class SearchFormComponent implements OnInit,OnDestroy {
   );
 
   pageSize$ = this.store.select(selectPageSize)
-  .pipe(
-    filter(elem => !!elem)
-  );
-
-  adsSize$ = this.store.select(selectAdsSize)
   .pipe(
     filter(elem => !!elem)
   );
@@ -115,12 +95,6 @@ export class SearchFormComponent implements OnInit,OnDestroy {
 
   changeFilters(filters: string[]) {
     this.store.dispatch(changeFilters({filters}))
-  }
-
-  changePage(event: any) {
-    console.log(event,(event.pageIndex)+1,event.pageSize);
-    this.store.dispatch(changePageNumber({pageNumber: (event.pageIndex)+1}));
-    this.store.dispatch(changePageSize({pageSize: event.pageSize}));
   }
 
   ngOnDestroy(): void {

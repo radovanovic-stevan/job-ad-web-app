@@ -1,0 +1,8 @@
+<button 
+    mat-stroked-button 
+    color="primary" 
+    [ngClass]="{'active-filter': (filter$ | async)}"
+    (click)="changeFilters([status])"
+>
+    {{status | titlecase}} 
+</button>

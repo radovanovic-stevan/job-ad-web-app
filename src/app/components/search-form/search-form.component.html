@@ -5,21 +5,11 @@
     </button>
 </mat-form-field>
 <div class="filters">
-    <mat-icon>filter_alt</mat-icon>
-    <!--TODO: Components-->
-    <button mat-stroked-button color="primary" [ngClass]="{'active-filter': (draftFilter$ | async)}"
-      (click)="changeFilters(['draft'])">Draft</button>
-    <button mat-stroked-button color="primary" [ngClass]="{'active-filter': (publishedFilter$ | async)}"
-      (click)="changeFilters(['published'])">Published</button>
-    <button mat-stroked-button color="primary" [ngClass]="{'active-filter': (archivedFilter$ | async)}"
-      (click)="changeFilters(['archived'])">Archived</button>
+  <mat-icon>filter_alt</mat-icon>
+  <app-filter [status]="'draft'"></app-filter>
+  <app-filter [status]="'published'"></app-filter>
+  <app-filter [status]="'archived'"></app-filter>
 </div>
-<mat-paginator [length]="(adsSize$ | async)"
-              (page)="changePage($event)"
-              [pageSize]="(pageSize$ | async)"
-              [pageIndex]="((pageNumber$ | async) ?? 1) - 1"
-              [pageSizeOptions]="[5, 10, 15, 20]"
->
-</mat-paginator>
+<app-paginator></app-paginator>
 
 

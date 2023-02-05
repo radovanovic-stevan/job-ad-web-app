@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { AdsEffects } from './state/ads.effects';
 import { SpinnerComponent } from './components/ui/spinner/spinner.component';
+import { FilterComponent } from './components/search-form/filter/filter.component';
+import { PaginatorComponent } from './components/search-form/paginator/paginator.component';
 // TODO: Add Can Deactivate for Form
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
     SearchFormComponent,
     JobFormComponent,
     SpinnerComponent,
+    FilterComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
