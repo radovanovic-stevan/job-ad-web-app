@@ -1,0 +1,6 @@
+<mat-form-field class="example-form-field">
+    <input [formControl]="searchInput" [value]="(searchFromState$ | async)" matInput type="text" placeholder="Enter a job title...">
+    <button matSuffix mat-icon-button *ngIf="searchInput.value" (click)="searchInput.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>

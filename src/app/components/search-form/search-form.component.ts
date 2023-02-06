@@ -1,11 +1,10 @@
 import { query } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { combineLatest, debounceTime, distinctUntilChanged, filter, map, skip, startWith, Subscription, tap } from 'rxjs';
-import { changeFilters, changePageNumber, changePageSize, fetchAds } from 'src/app/state/ads.actions';
-import { AdsState, selectAdsSize, selectFilters, selectPageNumber, selectPageSize } from 'src/app/state/ads.selectors';
+import { combineLatest, distinctUntilChanged, filter, Subscription, tap } from 'rxjs';
+import { changeFilters, changePageNumber, changePageSize, changeSearchTerm, fetchAds } from 'src/app/state/ads.actions';
+import { AdsState, selectFilters, selectPageNumber, selectPageSize, selectSearchTerm } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-search-form',
@@ -15,7 +14,6 @@ import { AdsState, selectAdsSize, selectFilters, selectPageNumber, selectPageSiz
 })
 export class SearchFormComponent implements OnInit,OnDestroy {
 
-  searchInput = new FormControl('');
   subscription!: Subscription;
 
   constructor(private store: Store<AdsState>, private router: Router, private route: ActivatedRoute) {}
@@ -24,14 +22,6 @@ export class SearchFormComponent implements OnInit,OnDestroy {
   .pipe(
     distinctUntilChanged((prev,curr) => prev.length === curr.length),
   )
-
-  // TODO: SWITCH MAP maybe
-  searchInput$ = this.searchInput.valueChanges
-  .pipe(
-    startWith(this.route.snapshot.queryParamMap.get('search') ?? ''),
-    debounceTime(400),
-    distinctUntilChanged(),
-  );
 
   pageNumber$ = this.store.select(selectPageNumber)
   .pipe(
@@ -42,6 +32,9 @@ export class SearchFormComponent implements OnInit,OnDestroy {
   .pipe(
     filter(elem => !!elem)
   );
+
+  searchInput$ = this.store.select(selectSearchTerm);
+
 
   ngOnInit() {
     this.initializeQueryParams();
@@ -81,7 +74,7 @@ export class SearchFormComponent implements OnInit,OnDestroy {
     const pageSize = +queryMap.get('pageSize')!;
 
     if(search) {
-      this.searchInput.setValue(search);
+      this.store.dispatch(changeSearchTerm({searchTerm: search}));
     }
 
     if(filters) {

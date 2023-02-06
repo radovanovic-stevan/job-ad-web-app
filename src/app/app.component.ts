@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { merge, tap } from 'rxjs';
 import { clearMessages, fetchAds } from './state/ads.actions';
@@ -21,11 +22,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.dispatch(clearMessages())
   })
 
-  constructor(private store: Store<AppState>, private _snackBar: MatSnackBar) {}
+  constructor(private store: Store<AppState>, private _snackBar: MatSnackBar, private router: Router) {}
 
   ngOnInit(): void {
-    // TODO noFetching=true to avoid double fetching
-    // this.store.dispatch(fetchAds({pageNumber: 1, pageSize: 4}));
+    if(!this.router.url.includes('/ads')) this.router.navigateByUrl('ads');
   }
 
   ngOnDestroy(): void {

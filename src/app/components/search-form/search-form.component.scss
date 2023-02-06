@@ -4,10 +4,6 @@
     flex-wrap: wrap;
     align-items: center;
 
-    mat-form-field {
-       flex-grow: 1;
-    }
-
     .filters {
         padding-left: 1rem;
         padding-bottom: 1rem;
@@ -21,10 +17,6 @@
 
    :host {
         flex-wrap: wrap;
-
-        mat-form-field {
-            flex: 100%;
-        }
 
         .filters {
             padding-left: 0rem;

@@ -14,6 +14,7 @@ export const clearMessages = createAction('[Ads] Clear Messages');
 export const changeFilters = createAction('[Ads] Change Filters',props<ChangeFilterActionProps>());
 export const changePageNumber = createAction('[Ads] Change Page Number',props<ChangePageNumberProps>());
 export const changePageSize = createAction('[Ads] Change Page Size',props<ChangePageSizeProps>());
+export const changeSearchTerm = createAction('[Ads] Change Search Term',props<ChangeSearchTermProps>());
 
 
 export type FetchAdsProps = {
@@ -58,3 +59,8 @@ export type ChangePageNumberProps = {
 export type ChangePageSizeProps = {
     pageSize: number;
 }
+
+export type ChangeSearchTermProps = {
+    searchTerm: string;
+}
+

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, tap, mergeMap, catchError } from 'rxjs/operators';
-import { JobAd } from '../interfaces/job-ad.interface';
 import { AdService } from '../services/ad.service';
 import { createAd, createAdFail, CreateAdProps, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
  

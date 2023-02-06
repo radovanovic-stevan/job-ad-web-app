@@ -19,6 +19,7 @@ import { AdsEffects } from './state/ads.effects';
 import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { FilterComponent } from './components/search-form/filter/filter.component';
 import { PaginatorComponent } from './components/search-form/paginator/paginator.component';
+import { SearchFieldComponent } from './components/search-form/search-field/search-field.component';
 // TODO: Add Can Deactivate for Form
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PaginatorComponent } from './components/search-form/paginator/paginator
     SpinnerComponent,
     FilterComponent,
     PaginatorComponent,
+    SearchFieldComponent,
   ],
   imports: [
     BrowserModule,

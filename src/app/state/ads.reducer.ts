@@ -14,6 +14,7 @@ import {
   changeFilters,
   changePageSize,
   changePageNumber,
+  changeSearchTerm,
 } from './ads.actions';
 import { AdsState } from './ads.selectors';
 
@@ -25,20 +26,23 @@ export const initialState: AdsState = {
     filters: [],
     pageNumber: 0,
     pageSize: 0,
-    adsSize: 0
+    adsSize: 0,
+    searchTerm: ""
 };
 
 export const adsReducer = createReducer(
   initialState,
   on(fetchAds, (state) => ({...state, loading: true})),
-  on(fetchAdsSuccess, (state,{jobs,length}) => {
-    const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
-    deepCopyState.ads = jobs;
-    deepCopyState.adsSize = length;
-    deepCopyState.loading = false;
-    deepCopyState.successMessage = "Successfully fetched ads 🎉";
-    return deepCopyState;
-  }),
+  on(fetchAdsSuccess, (state,{jobs,length}) => ({...state, ads: jobs, adsSize: length, loading: false, successMessage: "Successfully fetched ads 🎉"})
+  // {
+  //   const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
+  //   deepCopyState.ads = jobs;
+  //   deepCopyState.adsSize = length;
+  //   deepCopyState.loading = false;
+  //   deepCopyState.successMessage = "Successfully fetched ads 🎉";
+  //   return deepCopyState;
+  // }
+  ),
   on(fetchAdsFail, (state) => {
     const deepCopyState = {...state, ads: JSON.parse(JSON.stringify(state.ads)) as JobAd[]};
     deepCopyState.ads = [];
@@ -77,5 +81,6 @@ export const adsReducer = createReducer(
       return {...state, filters: newFilters}
   }),
   on(changePageSize, (state,{pageSize}) => ({...state, pageSize})),
-  on(changePageNumber, (state,{pageNumber}) => ({...state, pageNumber}))
+  on(changePageNumber, (state,{pageNumber}) => ({...state, pageNumber})),
+  on(changeSearchTerm, (state, {searchTerm}) => ({...state, searchTerm}))
 );

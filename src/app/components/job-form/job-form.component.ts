@@ -29,10 +29,7 @@ export class JobFormComponent {
       switchMap((paramMap: ParamMap) => this.store.select(selectAdById(+(paramMap.get("id") ?? -1)))),
     )
     .subscribe((ad: JobAd | undefined) => {
-      if(!ad) {
-        if (this.route.snapshot.paramMap.get("id")) this.router.navigateByUrl("ads");
-        return;
-      }
+      if(!ad) return;
       this.id = ad.id;
       if(ad.status === 'archived') this.profileForm.controls.status.disable();
       this.profileForm.controls.title.setValue(ad.title);
