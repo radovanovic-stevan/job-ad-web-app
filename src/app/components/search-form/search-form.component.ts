@@ -35,7 +35,6 @@ export class SearchFormComponent implements OnInit,OnDestroy {
 
   searchInput$ = this.store.select(selectSearchTerm);
 
-
   ngOnInit() {
     this.initializeQueryParams();
     this.setUpSubscriptions();
