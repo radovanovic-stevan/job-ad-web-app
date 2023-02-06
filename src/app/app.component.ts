@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { merge, tap } from 'rxjs';
-import { clearMessages, fetchAds } from './state/ads.actions';
+import { merge } from 'rxjs';
+import { clearMessages } from './state/ads.actions';
 import { AppState, selectErrorMessage, selectLoading, selectSuccessMessage } from './state/ads.selectors';
 
 @Component({
@@ -22,11 +21,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.dispatch(clearMessages())
   })
 
-  constructor(private store: Store<AppState>, private _snackBar: MatSnackBar, private router: Router) {}
+  constructor(private store: Store<AppState>, private _snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
-    if(!this.router.url.includes('/ads')) this.router.navigateByUrl('ads');
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.messages$.unsubscribe();
