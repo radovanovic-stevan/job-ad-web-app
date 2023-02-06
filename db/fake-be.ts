@@ -48,7 +48,7 @@ export class FakeBackEnd {
       ).pipe(delay(700));
     const id = this.getNewId();
     jobAds.unshift({ ...ad, id });
-    return of(id).pipe(delay(700));
+    return of({id}).pipe(delay(700));
   }
 
   private static getNewId(): number {

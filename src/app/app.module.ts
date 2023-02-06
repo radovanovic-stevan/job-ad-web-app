@@ -20,6 +20,7 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { FilterComponent } from './components/search-form/filter/filter.component';
 import { PaginatorComponent } from './components/search-form/paginator/paginator.component';
 import { SearchFieldComponent } from './components/search-form/search-field/search-field.component';
+import { HttpClientModule } from '@angular/common/http';
 // TODO: Add Can Deactivate for Form
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SearchFieldComponent } from './components/search-form/search-field/sear
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ ads: adsReducer }),

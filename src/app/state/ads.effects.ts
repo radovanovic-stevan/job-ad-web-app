@@ -34,7 +34,7 @@ export class AdsEffects {
     ofType(createAd.type),
     mergeMap(({ad}: CreateAdProps) => this.adService.addNewAd(ad)
       .pipe(
-        map((id) => ({ type: createAdSuccess.type, ad: {...ad, id}})),
+        map(({id}) => ({ type: createAdSuccess.type, ad: {...ad, id}})),
         tap(() => this.router.navigateByUrl('/ads')),
         catchError(() => of({ type: createAdFail.type}))
       ))
