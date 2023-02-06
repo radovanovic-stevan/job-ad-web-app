@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { JobAd, JobAdStatus } from 'src/app/interfaces/job-ad.interface';
 import { createAd, updateAd } from 'src/app/state/ads.actions';
-import { AdsState, selectAdById } from 'src/app/state/ads.selectors';
+import { AdsState, selectAdById, selectPageNumber } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-job-form',

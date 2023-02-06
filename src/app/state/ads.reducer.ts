@@ -20,7 +20,7 @@ import { AdsState } from './ads.selectors';
 
 export const initialState: AdsState = {
     ads: [],
-    loading: false,
+    loading: true,
     errorMessage: "",
     successMessage: "",
     filters: [],
