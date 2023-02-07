@@ -1,4 +1,4 @@
-import { JobAd } from "src/app/interfaces/job-ad.interface";
+import { JobAd } from "src/app/job-ad.interface";
 
 export const jobAds: JobAd[] = [
     {

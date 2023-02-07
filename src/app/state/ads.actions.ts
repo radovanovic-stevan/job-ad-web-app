@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { JobAd } from '../interfaces/job-ad.interface';
+import { JobAd } from '../job-ad.interface';
 
 export const fetchAds = createAction('[Ads] Fetch Ads',props<FetchAdsProps>());
 export const fetchAdsSuccess = createAction('[Ads] Fetch Ads Success',props<FetchAdsSuccessProps>());

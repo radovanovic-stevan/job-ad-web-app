@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { JobAd } from 'src/app/interfaces/job-ad.interface';
+import { JobAd } from 'src/app/job-ad.interface';
 import { updateAd } from 'src/app/state/ads.actions';
 import { AdsState } from 'src/app/state/ads.selectors';
 

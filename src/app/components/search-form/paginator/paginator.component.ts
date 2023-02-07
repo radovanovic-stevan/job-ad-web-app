@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
@@ -8,7 +8,8 @@ import { selectPageNumber, selectPageSize, selectAdsSize, AdsState } from 'src/a
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.scss']
+  styleUrls: ['./paginator.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginatorComponent {
 

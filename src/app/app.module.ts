@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/ui/page-not-found/page-not-found.component';
 import { AdListComponent } from './components/ad-list/ad-list.component';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './components/ui/header/header.component';
@@ -22,7 +22,7 @@ import { PaginatorComponent } from './components/search-form/paginator/paginator
 import { SearchFieldComponent } from './components/search-form/search-field/search-field.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestResponseInterceptor } from './interceptors/request-response.interceptor';
-// TODO: Add Can Deactivate for Form
+
 @NgModule({
   declarations: [
     AppComponent,

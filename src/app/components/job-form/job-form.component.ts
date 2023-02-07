@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, switchMap } from 'rxjs';
-import { JobAd, JobAdStatus } from 'src/app/interfaces/job-ad.interface';
+import { JobAd, JobAdStatus } from 'src/app/job-ad.interface';
 import { createAd, updateAd } from 'src/app/state/ads.actions';
 import { AdsState, selectAdById } from 'src/app/state/ads.selectors';
 

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FakeBackEnd } from 'db/fake-be';
 import { Observable } from 'rxjs';
-import { JobAd } from '../interfaces/job-ad.interface';
+import { JobAd } from '../job-ad.interface';
 import { FetchAdsProps } from '../state/ads.actions';
 
 @Injectable({

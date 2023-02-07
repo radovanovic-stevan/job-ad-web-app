@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { JobAd } from "../interfaces/job-ad.interface";
+import { JobAd } from "../job-ad.interface";
 
 export interface AdsState {
     ads: JobAd[],

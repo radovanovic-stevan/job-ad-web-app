@@ -1,5 +1,5 @@
 import { Observable, of, delay, throwError } from 'rxjs';
-import { JobAd } from 'src/app/interfaces/job-ad.interface';
+import { JobAd } from 'src/app/job-ad.interface';
 import { jobAds } from './fake-data';
 
 export class FakeBackEnd {
@@ -10,11 +10,12 @@ export class FakeBackEnd {
     filters: string[] | undefined
   ): Observable<{ jobs: JobAd[]; length: number }> {
     let jobsToSend: JobAd[] = JSON.parse(JSON.stringify(jobAds));
+
     if (searchTerm)
       jobsToSend = jobsToSend.filter((elem) =>
         elem.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
       );
-    //TODO: 2 of 1 bug
+
     if (filters && filters.length !== 0)
       jobsToSend = jobsToSend.filter((elem) => filters.includes(elem.status));
     const length = jobsToSend.length;
@@ -22,6 +23,7 @@ export class FakeBackEnd {
       (pageNumber - 1) * pageSize,
       (pageNumber - 1) * pageSize + pageSize
     );
+    
     return of({ jobs: jobsToSend, length }).pipe(delay(1200));
   }
 

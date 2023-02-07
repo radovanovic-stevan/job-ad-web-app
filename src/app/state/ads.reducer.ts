@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { JobAd } from '../interfaces/job-ad.interface';
+import { JobAd } from '../job-ad.interface';
 import {
   fetchAdsFail,
   fetchAdsSuccess,

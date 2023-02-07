@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { tap, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { tap, debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { changeSearchTerm } from 'src/app/state/ads.actions';
 import { AdsState, selectSearchTerm } from 'src/app/state/ads.selectors';
 
@@ -11,9 +11,10 @@ import { AdsState, selectSearchTerm } from 'src/app/state/ads.selectors';
   styleUrls: ['./search-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchFieldComponent implements OnInit {
+export class SearchFieldComponent implements OnInit, OnDestroy {
 
     searchInput = new FormControl('');
+    sub!: Subscription;
 
     searchFromState$ = this.store.select(selectSearchTerm)
     .pipe(
@@ -21,7 +22,6 @@ export class SearchFieldComponent implements OnInit {
       tap(searchTerm => this.searchInput.setValue(searchTerm))
     )
 
-    // TODO: SWITCH MAP maybe
     searchInput$ = this.searchInput.valueChanges
     .pipe(
       debounceTime(400),
@@ -32,7 +32,11 @@ export class SearchFieldComponent implements OnInit {
     constructor(private store: Store<AdsState>) {}
 
     ngOnInit(): void {
-      this.searchInput$.subscribe();
+      this.sub = this.searchInput$.subscribe();
+    }
+
+    ngOnDestroy(): void {
+      this.sub?.unsubscribe();
     }
   
 }
