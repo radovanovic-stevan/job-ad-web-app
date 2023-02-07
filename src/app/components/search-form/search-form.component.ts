@@ -1,8 +1,7 @@
-import { query } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { combineLatest, distinctUntilChanged, filter, Subscription, tap } from 'rxjs';
+import { combineLatest, distinctUntilChanged, filter, skipWhile, Subscription, tap } from 'rxjs';
 import { changeFilters, changePageNumber, changePageSize, changeSearchTerm, fetchAds } from 'src/app/state/ads.actions';
 import { AdsState, selectFilters, selectPageNumber, selectPageSize, selectSearchTerm } from 'src/app/state/ads.selectors';
 
@@ -15,8 +14,13 @@ import { AdsState, selectFilters, selectPageNumber, selectPageSize, selectSearch
 export class SearchFormComponent implements OnInit,OnDestroy {
 
   subscription!: Subscription;
+  noFetching: boolean = false;
 
-  constructor(private store: Store<AdsState>, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store<AdsState>, 
+    private router: Router, 
+    private route: ActivatedRoute
+  ) {}
 
   filters$ = this.store.select(selectFilters)
   .pipe(
@@ -45,6 +49,10 @@ export class SearchFormComponent implements OnInit,OnDestroy {
     .pipe(
       tap(([searchInputValue,filters,pageNumber,pageSize]) => {
         this.changeQueryParams(searchInputValue,filters,pageNumber,pageSize);
+        if(this.noFetching) {
+          this.noFetching = false;
+          return;
+        }
         this.store.dispatch(
           fetchAds({pageSize, pageNumber, searchTerm: searchInputValue ?? undefined, filters})) 
       })
@@ -72,6 +80,8 @@ export class SearchFormComponent implements OnInit,OnDestroy {
     const pageNumber = +queryMap.get('pageNumber')!;
     const pageSize = +queryMap.get('pageSize')!;
 
+    this.noFetching = !!queryMap.get('noFetching')
+    
     if(search) {
       this.store.dispatch(changeSearchTerm({searchTerm: search}));
     }

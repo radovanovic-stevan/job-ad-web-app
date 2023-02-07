@@ -2,10 +2,6 @@ Ads page, without moving around
 	2 of 1 bug - could be solved with datasource maybe
 	publishing/archiving won't do shit when filters are active
 
-Guards
-Interceptors
-
 Refetching shouldn't happen but oh well
-ExpressionChanged? - Move Search Field back into parent
 
 

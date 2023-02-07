@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, merge } from 'rxjs';
+import { filter, first, merge } from 'rxjs';
 import { clearMessages } from './state/ads.actions';
 import { AppState, selectErrorMessage, selectLoading, selectSuccessMessage } from './state/ads.selectors';
 
@@ -24,7 +24,9 @@ export class AppComponent implements OnDestroy {
 
   routerSubscription = this.router.events
   .pipe(
-    filter(event => event instanceof NavigationStart && event.id === 1 && !event.url.includes('/ads'))
+    filter(event => event instanceof NavigationStart),
+    first(),
+    filter(event => !(event as NavigationStart).url.includes('/ads'))
   )
   .subscribe(() => this.router.navigateByUrl('/ads'));
 
