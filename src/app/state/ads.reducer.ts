@@ -91,9 +91,9 @@ export const adsReducer = createReducer(
     } else {
       newFilters.push(...filters);
     }
-    return { ...state, filters: newFilters };
+    return { ...state, filters: newFilters, pageNumber: 1 };
   }),
   on(changePageSize, (state, { pageSize }) => ({ ...state, pageSize })),
   on(changePageNumber, (state, { pageNumber }) => ({ ...state, pageNumber })),
-  on(changeSearchTerm, (state, { searchTerm }) => ({ ...state, searchTerm }))
+  on(changeSearchTerm, (state, { searchTerm }) => ({ ...state, searchTerm, pageNumber: 1 }))
 );

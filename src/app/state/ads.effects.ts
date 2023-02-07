@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, tap, mergeMap, catchError } from 'rxjs/operators';
+import { map, tap, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { AdService } from '../services/ad.service';
 import { createAd, createAdFail, CreateAdProps, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, UpdateAdProps, updateAdSuccess } from './ads.actions';
  
@@ -11,7 +11,7 @@ export class AdsEffects {
  
   fetchAds$ = createEffect(() => this.actions$.pipe(
     ofType(fetchAds.type),
-    mergeMap((props: FetchAdsProps) => this.adService.getAllAds(props)
+    switchMap((props: FetchAdsProps) => this.adService.getAllAds(props)
       .pipe(
         map(({jobs, length}) => ({ type: fetchAdsSuccess.type, jobs,length })),
         catchError(() => of({ type: fetchAdsFail.type}))
