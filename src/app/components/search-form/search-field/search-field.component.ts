@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { tap, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { changeSearchTerm } from 'src/app/state/ads.actions';

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { combineLatest, distinctUntilChanged, filter, skipWhile, Subscription, tap } from 'rxjs';
+import { combineLatest, distinctUntilChanged, filter, Subscription, tap } from 'rxjs';
 import { changeFilters, changePageNumber, changePageSize, changeSearchTerm, fetchAds } from 'src/app/state/ads.actions';
 import { AdsState, selectFilters, selectPageNumber, selectPageSize, selectSearchTerm } from 'src/app/state/ads.selectors';
 
@@ -14,7 +14,7 @@ import { AdsState, selectFilters, selectPageNumber, selectPageSize, selectSearch
 export class SearchFormComponent implements OnInit,OnDestroy {
 
   subscription!: Subscription;
-  noFetching: boolean = false;
+  noFetching = false;
 
   constructor(
     private store: Store<AdsState>, 
@@ -77,8 +77,8 @@ export class SearchFormComponent implements OnInit,OnDestroy {
     const queryMap = this.route.snapshot.queryParamMap;
     const search = queryMap.get('search');
     const filters = queryMap.get('filters')?.split(',');
-    const pageNumber = +queryMap.get('pageNumber')!;
-    const pageSize = +queryMap.get('pageSize')!;
+    const pageNumber = +(queryMap.get('pageNumber') ?? 0);
+    const pageSize = +(queryMap.get('pageSize') ?? 0);
 
     this.noFetching = !!queryMap.get('noFetching')
     

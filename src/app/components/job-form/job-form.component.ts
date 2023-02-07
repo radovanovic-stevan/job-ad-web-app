@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription, switchMap, tap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { JobAd, JobAdStatus } from 'src/app/interfaces/job-ad.interface';
 import { createAd, updateAd } from 'src/app/state/ads.actions';
-import { AdsState, selectAdById, selectPageNumber } from 'src/app/state/ads.selectors';
+import { AdsState, selectAdById } from 'src/app/state/ads.selectors';
 
 @Component({
   selector: 'app-job-form',
@@ -45,12 +45,12 @@ export class JobFormComponent implements OnDestroy {
   }
 
   submitForm() {
-    const formPayload = this.searchForm.getRawValue();
+    const {skills, status, title, description} = this.searchForm.getRawValue();
     const changed: Omit<JobAd,'id'> = {
-      skills: formPayload.skills!.trim().split("|"),
-      status: formPayload.status!,
-      title: formPayload.title!.trim(),
-      description: formPayload.description!.trim()
+      skills: skills?.trim().split("|") ?? [],
+      status: status ?? 'draft',
+      title: title?.trim() ?? "",
+      description: description?.trim() ?? ""
     }
 
     if(this.id) {

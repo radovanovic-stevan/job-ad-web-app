@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FakeBackEnd } from 'db/fake-be';
-import { delay, filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { JobAd } from '../interfaces/job-ad.interface';
 import { FetchAdsProps } from '../state/ads.actions';
 

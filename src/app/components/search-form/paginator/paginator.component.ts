@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { changePageNumber, changePageSize } from 'src/app/state/ads.actions';
@@ -28,7 +29,7 @@ export class PaginatorComponent {
 
   constructor(private store: Store<AdsState>) {}
 
-  changePage(event: any) {
+  changePage(event: PageEvent) {
     this.store.dispatch(changePageNumber({pageNumber: (event.pageIndex)+1}));
     this.store.dispatch(changePageSize({pageSize: event.pageSize}));
   }
