@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, tap, mergeMap, catchError } from 'rxjs/operators';
 import { AdService } from '../services/ad.service';
-import { createAd, createAdFail, CreateAdProps, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, updateAdSuccess } from './ads.actions';
+import { createAd, createAdFail, CreateAdProps, createAdSuccess, fetchAds, fetchAdsFail, FetchAdsProps, fetchAdsSuccess, updateAd, updateAdFail, UpdateAdProps, updateAdSuccess } from './ads.actions';
  
 @Injectable()
 export class AdsEffects {
@@ -21,7 +21,7 @@ export class AdsEffects {
 
   updateAd$ = createEffect(() => this.actions$.pipe(
     ofType(updateAd.type),
-    mergeMap(({id,changed}) => this.adService.updateAd(id,changed)
+    mergeMap(({id,changed}: UpdateAdProps) => this.adService.updateAd(id,changed)
       .pipe(
         map(() => ({ type: updateAdSuccess.type, id,changed, loading: !this.router.url.includes('/ads') })),
         tap(() => this.router.navigate(['ads'], {queryParamsHandling: 'merge'})),

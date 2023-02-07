@@ -76,7 +76,7 @@ export const adsReducer = createReducer(
   }),
   on(createAdFail, (state) => ({
     ...state,
-    errorMessage: 'An ad with that title already exists',
+    errorMessage: 'An ad with that title already exists 😭',
     loading: false,
   })),
   on(clearMessages, (state) => ({
