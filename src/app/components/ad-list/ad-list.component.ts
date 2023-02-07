@@ -11,7 +11,7 @@ import { AppState, selectAds, selectLoading } from 'src/app/state/ads.selectors'
 })
 export class AdListComponent {
 
-  ads$ = this.store.select(selectAds).pipe(tap((ads) => console.log(ads)));
+  ads$ = this.store.select(selectAds);
 
   constructor(private store: Store<AppState>) {}
   

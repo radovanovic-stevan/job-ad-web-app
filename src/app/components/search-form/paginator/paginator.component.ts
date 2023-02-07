@@ -29,7 +29,6 @@ export class PaginatorComponent {
   constructor(private store: Store<AdsState>) {}
 
   changePage(event: any) {
-    console.log(event,(event.pageIndex)+1,event.pageSize);
     this.store.dispatch(changePageNumber({pageNumber: (event.pageIndex)+1}));
     this.store.dispatch(changePageSize({pageSize: event.pageSize}));
   }

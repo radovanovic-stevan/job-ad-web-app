@@ -25,29 +25,26 @@ export class AdService {
       }
     });
 
-    const obs$ = this.sendRealRequests ?
-    this.httpClient.get<{jobs: JobAd[], length: number}>('http://localhost:3000/job-ad', {params}) :
+    return this.sendRealRequests ?
+    this.httpClient.get<{jobs: JobAd[], length: number}>('job-ad', {params}) :
     FakeBackEnd.returnJobAds(pageNumber, pageSize, searchTerm, filters);
     
-    return obs$.pipe(delay(700));
   }
 
   updateAd(id: number, changed: Partial<JobAd>): Observable<string> {
 
-    const obs$ = this.sendRealRequests ?
-    this.httpClient.patch<string>(`http://localhost:3000/job-ad/${id}`,changed) :
+    return this.sendRealRequests ?
+    this.httpClient.patch<string>(`job-ad/${id}`,changed) :
     FakeBackEnd.editJobAd(id,changed);
 
-    return obs$.pipe(delay(700));
   }
 
   addNewAd(ad: Omit<JobAd,"id">): Observable<{id: number}> {
 
-    const obs$ = this.sendRealRequests ?
-    this.httpClient.post<{id: number}>('http://localhost:3000/job-ad', ad) :
+    return this.sendRealRequests ?
+    this.httpClient.post<{id: number}>('job-ad', ad) :
     FakeBackEnd.addNewJobAd(ad);
 
-    return obs$.pipe(delay(700));
   }
 
 

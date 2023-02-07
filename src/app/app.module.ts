@@ -20,7 +20,8 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { FilterComponent } from './components/search-form/filter/filter.component';
 import { PaginatorComponent } from './components/search-form/paginator/paginator.component';
 import { SearchFieldComponent } from './components/search-form/search-field/search-field.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestResponseInterceptor } from './interceptors/request-response.interceptor';
 // TODO: Add Can Deactivate for Form
 @NgModule({
   declarations: [
@@ -44,9 +45,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ ads: adsReducer }),
-    EffectsModule.forRoot([AdsEffects])
+    EffectsModule.forRoot([AdsEffects]),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: RequestResponseInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
